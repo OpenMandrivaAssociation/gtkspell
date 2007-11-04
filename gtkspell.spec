@@ -1,13 +1,14 @@
-%define libname %mklibname %{name} %{major}
-%define major 0
+%define major		0
+%define libname		%mklibname %{name} %{major}
+%define develname	%mklibname %{name} -d
 
 Summary:	Spell-checking addon for GTK's TextView widget
 Name:		gtkspell
 Version:	2.0.11
-Release: %mkrel 2
+Release:	%mkrel 3
 Source0:	http://gtkspell.sourceforge.net/download/%{name}-%{version}.tar.bz2
-License:	GPL
-Url:		http://gtkspell.sourceforge.net/
+License:	GPL+
+URL:		http://gtkspell.sourceforge.net/
 Group:		System/Libraries
 BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:	gtk+2-devel
@@ -30,14 +31,15 @@ GtkSpell provides MSWord/MacOSX-style highlighting of misspelled words in a
 GtkTextView widget.  Right-clicking a misspelled word pops up a menu of
 suggested replacements.  
 
-%package -n %{libname}-devel
+%package -n %{develname}
 Summary:	%{summary}
 Group:		Development/C
 Provides:	%{name}-devel = %{version}-%{release}
 Provides:	lib%{name}-devel = %{version}-%{release}
+Obsoletes:	%{mklibname gtkspell 0 -d}
 Requires:	%{libname} = %{version}
 
-%description -n %{libname}-devel
+%description -n %{develname}
 GtkSpell provides MSWord/MacOSX-style highlighting of misspelled words in a
 GtkTextView widget.  Right-clicking a misspelled word pops up a menu of
 suggested replacements.  
@@ -71,7 +73,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %{_libdir}/*.so.*
 
-%files -n %{libname}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %doc %{_datadir}/gtk-doc/html/*
 %{_libdir}/*.so
