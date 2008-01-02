@@ -10,6 +10,7 @@ Source0:	http://gtkspell.sourceforge.net/download/%{name}-%{version}.tar.bz2
 License:	GPL+
 URL:		http://gtkspell.sourceforge.net/
 Group:		System/Libraries
+BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:	gtk+2-devel
 BuildRequires:	aspell-devel >= 0.50.2
 BuildRequires:  gtk-doc
