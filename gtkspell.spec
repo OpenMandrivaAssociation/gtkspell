@@ -12,7 +12,7 @@ URL:		http://gtkspell.sourceforge.net/
 Group:		System/Libraries
 BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:	gtk+2-devel
-BuildRequires:	aspell-devel >= 0.50.2
+BuildRequires:	enchant-devel
 BuildRequires:  gtk-doc
 BuildRequires:  docbook-dtd42-xml
 
