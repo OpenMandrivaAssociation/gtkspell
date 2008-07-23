@@ -4,9 +4,9 @@
 
 Summary:	Spell-checking addon for GTK's TextView widget
 Name:		gtkspell
-Version:	2.0.11
-Release:	%mkrel 4
-Source0:	http://gtkspell.sourceforge.net/download/%{name}-%{version}.tar.bz2
+Version:	2.0.13
+Release:	%mkrel 1
+Source0:	http://gtkspell.sourceforge.net/download/%{name}-%{version}.tar.gz
 License:	GPL+
 URL:		http://gtkspell.sourceforge.net/
 Group:		System/Libraries
