@@ -15,6 +15,7 @@ BuildRequires:	gtk+2-devel
 BuildRequires:	enchant-devel
 BuildRequires:  gtk-doc
 BuildRequires:  docbook-dtd42-xml
+BuildRequires:  intltool
 
 %description
 GtkSpell provides MSWord/MacOSX-style highlighting of misspelled words in a
