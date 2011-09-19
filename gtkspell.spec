@@ -16,6 +16,7 @@ BuildRequires:	enchant-devel
 BuildRequires:  gtk-doc
 BuildRequires:  docbook-dtd42-xml
 BuildRequires:  intltool
+BuildRequires:  automake
 #
 BuildRequires:  gnome-common
 
