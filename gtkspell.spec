@@ -5,20 +5,18 @@
 Summary:	Spell-checking addon for GTK's TextView widget
 Name:		gtkspell
 Version:	2.0.16
-Release:	%mkrel 4
-Source0:	http://gtkspell.sourceforge.net/download/%{name}-%{version}.tar.gz
+Release:	5
 License:	GPL+
 URL:		http://gtkspell.sourceforge.net/
 Group:		System/Libraries
-BuildRoot:	%{_tmppath}/%{name}-%{version}-root
-BuildRequires:	gtk+2-devel
-BuildRequires:	enchant-devel
-BuildRequires:  gtk-doc
+Source0:	http://gtkspell.sourceforge.net/download/%{name}-%{version}.tar.gz
+
 BuildRequires:  docbook-dtd42-xml
-BuildRequires:  intltool
-BuildRequires:  automake
-#
 BuildRequires:  gnome-common
+BuildRequires:  gtk-doc
+BuildRequires:  intltool
+BuildRequires:	pkgconfig(enchant)
+BuildRequires:	pkgconfig(gtk+-2.0)
 
 %description
 GtkSpell provides MSWord/MacOSX-style highlighting of misspelled words in a
@@ -28,7 +26,7 @@ suggested replacements.
 %package -n %{libname}
 Summary:	%{summary}
 Group:		%{group}
-Requires: %name >= %version
+Suggests:	%{libname} = %{version}-%{release}
 
 %description -n %{libname}
 GtkSpell provides MSWord/MacOSX-style highlighting of misspelled words in a
@@ -38,16 +36,14 @@ suggested replacements.
 %package -n %{develname}
 Summary:	%{summary}
 Group:		Development/C
+Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
-Provides:	lib%{name}-devel = %{version}-%{release}
 Obsoletes:	%{mklibname gtkspell 0 -d}
-Requires:	%{libname} = %{version}
 
 %description -n %{develname}
 GtkSpell provides MSWord/MacOSX-style highlighting of misspelled words in a
 GtkTextView widget.  Right-clicking a misspelled word pops up a menu of
 suggested replacements.  
-
 
 %prep
 %setup -q
@@ -55,41 +51,27 @@ suggested replacements.
 gnome-autogen.sh
 
 %build
-%configure2_5x
+%configure2_5x \
+	--disable-static
+
 %make
 
 %install
-rm -rf %{buildroot} %name.lang
-
+rm -rf %{buildroot} %{name}.lang
 %makeinstall_std
-%find_lang %name
+rm -f %{buildroot}%{_libdir}/*.la
 
-%clean
-rm -rf %{buildroot}
+%find_lang %{name}
 
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
-%files -f %name.lang
-%defattr(-,root,root)
+%files -f %{name}.lang
 %doc README AUTHORS ChangeLog
 
 %files -n %{libname}
-%defattr(-,root,root)
-%{_libdir}/*.so.*
+%{_libdir}/*.so.%{major}*
 
 %files -n %{develname}
-%defattr(-,root,root)
 %doc %{_datadir}/gtk-doc/html/*
 %{_libdir}/*.so
-%{_libdir}/*.la
-%{_libdir}/*.a
 %{_libdir}/pkgconfig/*
 %{_includedir}/*
-
 
