@@ -8,7 +8,7 @@ Version:	2.0.16
 Release:	20
 License:	GPLv2
 Group:		System/Libraries
-Url:		http://gtkspell.sourceforge.net/
+Url:		https://gtkspell.sourceforge.net/
 Source0:	http://gtkspell.sourceforge.net/download/%{name}-%{version}.tar.gz
 
 BuildRequires:  docbook-dtd42-xml
